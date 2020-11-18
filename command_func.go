@@ -280,6 +280,13 @@ func CmdDown(c *cli.Context) error {
 		utils.PrintCmd(os.Stdout, delBrCmd, verbose)
 	}
 
+	if len(tnconfig.PostFini) != 0 {
+		for _, postFiniCmds := range tnconfig.PostFini {
+			postExecFiniCmds := shell.ExecCmd(postFiniCmds.Cmds)
+			utils.PrintCmds(os.Stdout, postExecFiniCmds, verbose)
+		}
+	}
+
 	return nil
 }
 

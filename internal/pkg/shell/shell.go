@@ -614,7 +614,7 @@ func (node *Node) DelNsCmd() (delNsCmd string) {
 func (node *Node) MountTmpl() (mountTmplCmd []string, err error) {
 	for _, tmpl := range node.Templates {
 		dest := strings.Split(tmpl.Dst, "/")
-		destfile := dest[len(dest)-1]
+		destfile := node.Name + "_" + dest[len(dest)-1]
 		f, err := os.Create(destfile)
 		if err != nil {
 			return nil, err
